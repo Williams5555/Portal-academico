@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* Base y Reset */
+:root {
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --slate-bg: #f8fafc;
+    
+    /* Variables de Modo Oscuro */
+    --dark-primary: #6366f1;
+    --dark-slate-bg: #030712; /* slate-950 */
+    --dark-form-bg: #0f172a;  /* slate-900 */
+    --dark-border: #1e293b;   /* slate-800 */
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--slate-bg);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Clases de Utilidad para el Formulario */
+.label-style {
+    display: block;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #64748b;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+/* Adaptación del Label en Modo Oscuro */
+.dark .label-style {
+    color: #94a3b8; /* slate-400 */
+}
+
+.input-minimal {
+    width: 100%;
+    background-color: transparent;
+    border-bottom: 2px solid #e2e8f0;
+    padding: 0.6rem 0;
+    outline: none;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #1e293b;
+}
+
+/* Adaptación del Input en Modo Oscuro */
+.dark .input-minimal {
+    border-color: var(--dark-border);
+    color: #f1f5f9; /* slate-100 */
+}
+
+.input-minimal:focus {
+    border-color: var(--primary);
+    transform: translateY(-1px);
+}
+
+.dark .input-minimal:focus {
+    border-color: var(--dark-primary);
+}
+
+.input-minimal::placeholder {
+    color: #cbd5e1;
+    font-weight: 400;
+    font-size: 0.85rem;
+}
+
+.dark .input-minimal::placeholder {
+    color: #64748b;
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(15px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+.fila-estudiante {
+    animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Diseño de Tabla y Badges */
+.badge {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.badge-activo { 
+    background-color: #f1f5f9; 
+    color: #475569; 
+}
+
+/* Adaptación del Badge Activo en Modo Oscuro */
+.dark .badge-activo {
+    background-color: #1e293b;
+    color: #94a3b8;
+}
+
+.badge-graduado { 
+    background-color: #dcfce7; 
+    color: #15803d;
+}
+
+/* Adaptación del Badge Graduado en Modo Oscuro */
+.dark .badge-graduado {
+    background-color: #052e16; /* green-950 */
+    color: #4ade80; /* green-400 */
+}
+
+/* Botones y Acciones */
+.btn-graduar, .btn-eliminar {
+    padding: 8px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+/* Forzar color base en modo oscuro para los botones de texto de la tabla */
+.dark .btn-graduar, .dark .btn-eliminar {
+    color: #94a3b8;
+}
+
+.btn-graduar:hover { 
+    background-color: #ecfdf5;
+    color: #10b981; 
+}
+
+.dark .btn-graduar:hover {
+    background-color: #052e16;
+    color: #4ade80;
+}
+
+.btn-eliminar:hover { 
+    background-color: #fff1f2;
+    color: #f43f5e; 
+}
+
+.dark .btn-eliminar:hover {
+    background-color: #4c0519; /* rose-950 */
+    color: #fb7185; /* rose-400 */
+}
+
+/* Scrollbar Personalizado */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #e2e8f0;
+    border-radius: 10px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #cbd5e1;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: #334155;
+}
+
+/* Ajustes de sombras para el modo moderno */
+.form-container {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+}
+
+/* Efecto hover en filas de la tabla */
+tbody tr:hover {
+    background-color: #fcfdfe;
+}
+
+.dark tbody tr:hover {
+    background-color: rgba(30, 41, 59, 0.3); /* slate-800 sutil */
+}
+
+/* --- Personalización de SweetAlert2 (Modo Oscuro Soportado) --- */
+.swal2-popup {
+    font-family: 'Inter', sans-serif !important;
+    border-radius: 2rem !important;
+    padding: 2rem !important;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Fondo oscuro adaptado para la alerta */
+.dark .swal2-popup {
+    background-color: var(--dark-form-bg) !important;
+    border: 1px solid var(--dark-border) !important;
+}
+
+.swal2-title {
+    color: #1e293b !important;
+    font-weight: 800 !important;
+}
+
+.dark .swal2-title {
+    color: #f1f5f9 !important;
+}
+
+.swal2-html-container {
+    color: #64748b !important;
+    font-weight: 500 !important;
+}
+
+.dark .swal2-html-container {
+    color: #94a3b8 !important;
+}
+
+.swal2-confirm {
+    border-radius: 1rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    font-size: 0.8rem !important;
+    letter-spacing: 0.05em !important;
+}
+
+.swal2-cancel {
+    border-radius: 1rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    font-size: 0.8rem !important;
+}
