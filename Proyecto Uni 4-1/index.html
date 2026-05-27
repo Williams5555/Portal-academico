@@ -3,155 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Académico | Gestión de Inscripciones</title>
-    <link rel="icon" href="Logo_cole-removebg-preview.png">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-        }
-    </script>
+    <title>Portal Académico - Inscripciones</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="Logo_cole-removebg-preview.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
-<body class="bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300">
+<body>
 
-    <main class="max-w-5xl mx-auto px-4 py-12">
-        
-        <header class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-12 border-b border-slate-200 pb-8 dark:border-slate-800">
-            <div>
-                <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">Portal Académico</h1>
-                <p class="text-slate-500 mt-1 font-medium italic dark:text-slate-400">Unidad Educativa - Control de Matrícula</p>
-            </div>
-            <div class="flex items-center justify-end gap-3">
-                <span id="fechaActual" class="text-sm font-bold text-indigo-600 bg-indigo-50 px-4 py-2 rounded-full dark:text-indigo-400 dark:bg-indigo-950/50">
-                    </span>
-                
-                <button id="themeToggle" class="p-2 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700 transition-all shadow-inner" title="Cambiar tema">
-                    <svg id="themeToggleLightIcon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 2.293a1 1 0 011.414 0l.707.707a1 1 0 01-1.414 1.414L14 5.707a1 1 0 010-1.414zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM14.707 14.293a1 1 0 010 1.414l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 0zM10 18a1 1 0 01-1-1v-1a1 1 0 112 0v1a1 1 0 01-1 1zM5.707 14.707a1 1 0 01-1.414 0l-.707-.707a1 1 0 011.414-1.414l.707.707a1 1 0 010 1.414zM2 10a1 1 0 011-1h1a1 1 0 110 2H3a1 1 0 01-1-1zM5.707 4.293a1 1 0 010 1.414l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 0z" fill-rule="evenodd" clip-rule="evenodd"></path>
-                    </svg>
-                    <svg id="themeToggleDarkIcon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-                    </svg>
-                </button>
-            </div>
-        </header>
-
-        <section class="form-container bg-white rounded-[2rem] shadow-xl shadow-slate-200/50 border border-slate-100 mb-12 overflow-hidden dark:bg-slate-900 dark:border-slate-800 dark:shadow-black/20">
-            <div class="bg-slate-900 p-6 flex justify-between items-center dark:bg-black">
-                <h2 class="text-white text-lg font-bold flex items-center gap-2">
-                    <span class="w-2 h-6 bg-indigo-500 rounded-full"></span>
-                    Planilla Digital de Inscripción
-                </h2>
-                <span class="text-[10px] text-slate-400 uppercase tracking-widest font-bold">Ciclo Escolar 2026</span>
-            </div>
+    <nav class="navbar-estilo">
+        <div class="nav-logo">
+            PORTAL ACADÉMICO
+        </div>
+        <div class="nav-derecha">
+            <a href="index.html" class="nav-link nav-activo">Inscripciones</a>
+            <a href="login.html" class="nav-link">Panel Docentes</a>
             
-            <form id="formRegistro" class="p-8 space-y-10">
-                
-                <div class="space-y-6">
-                    <div class="flex items-center gap-3">
-                        <span class="w-8 h-8 flex items-center justify-center bg-indigo-600 text-white rounded-full text-xs font-bold">1</span>
-                        <h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">Datos del Alumno</h3>
+            <button id="themeToggle" class="theme-btn" aria-label="Cambiar tema">
+                <span id="theme-icon">🌙</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="contenedor-principal">
+
+        <div id="vistaInscripcion" class="flat-card vista-entrada animate-fade-in">
+            <h2 class="titulo-seccion" style="text-align: center;">Registro de Inscripción</h2>
+            <form id="formRegistro">
+                <div class="form-group">
+                    <label class="label-style">Nombre Completo *</label>
+                    <input type="text" id="inputNombre" class="input-minimal" placeholder="Ej. Juan Pérez" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="label-style">Cédula / ID *</label>
+                        <input type="text" id="inputCedula" class="input-minimal" placeholder="Ej. 123456" required>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div class="md:col-span-2">
-                            <label class="label-style">Nombre Completo</label>
-                            <input id="inputNombre" type="text" placeholder="Ej: Williams Hernández" required class="input-minimal">
-                        </div>
-                        <div>
-                            <label class="label-style">Cédula / ID Escolar</label>
-                            <input id="inputCedula" type="text" placeholder="V-00.000.000" required class="input-minimal">
-                        </div>
-                        <div>
-                            <label class="label-style">Año / Sección</label>
-                            <input id="inputGrado" type="text" placeholder="Ej: 5to Año A" required class="input-minimal">
-                        </div>
-                        <div>
-                            <label class="label-style">Edad</label>
-                            <input id="inputEdad" type="number" placeholder="Ej: 20" class="input-minimal">
-                        </div>
+                    <div class="form-group">
+                        <label class="label-style">Edad</label>
+                        <input type="number" id="inputEdad" class="input-minimal" placeholder="Ej. 5">
                     </div>
                 </div>
 
-                <div class="space-y-6">
-                    <div class="flex items-center gap-3">
-                        <span class="w-8 h-8 flex items-center justify-center bg-indigo-600 text-white rounded-full text-xs font-bold">2</span>
-                        <h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">Datos de Contacto</h3>
+                <div class="form-group">
+                    <label class="label-style">Asignar Grado / Sección *</label>
+                    <select id="inputGrado" class="input-minimal" required>
+                        <option value="" disabled selected>Selecciona una opción</option>
+                        <option value="2do Grupo Maternal">2do Grupo Maternal</option>
+                        <option value="3er Grupo Maternal">3er Grupo Maternal</option>
+                        <option value="1er Grupo Preescolar">1er Grupo Preescolar</option>
+                        <option value="2do Grupo Preescolar">2do Grupo Preescolar</option>
+                        <option value="3er Grupo Preescolar">3er Grupo Preescolar</option>
+                        <option value="1er Grado">1er Grado</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="label-style">Representante</label>
+                    <input type="text" id="inputRep" class="input-minimal" placeholder="Nombre del tutor">
+                </div>
+
+                <div class="form-group">
+                    <label class="label-style">Teléfono</label>
+                    <input type="tel" id="inputTelf" class="input-minimal" placeholder="Ej. 0414-1234567">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="label-style">Condición Médica</label>
+                        <input type="text" id="inputEnfermedad" class="input-minimal" placeholder="Ninguna">
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div>
-                            <label class="label-style">Nombre del Representante</label>
-                            <input id="inputRep" type="text" placeholder="Nombre completo del tutor" class="input-minimal">
-                        </div>
-                        <div>
-                            <label class="label-style">Teléfono</label>
-                            <input id="inputTelf" type="tel" placeholder="04XX-0000000" class="input-minimal">
-                        </div>
+                    <div class="form-group">
+                        <label class="label-style">Alergias</label>
+                        <input type="text" id="inputAlergia" class="input-minimal" placeholder="Ninguna">
                     </div>
                 </div>
 
-                <div class="space-y-6">
-                    <div class="flex items-center gap-3">
-                        <span class="w-8 h-8 flex items-center justify-center bg-orange-500 text-white rounded-full text-xs font-bold">3</span>
-                        <h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">Salud y Alergias</h3>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div>
-                            <label class="label-style text-orange-600 dark:text-orange-400">Enfermedades</label>
-                            <input id="inputEnfermedad" type="text" placeholder="Ninguna" class="input-minimal focus:border-orange-500 dark:focus:border-orange-400">
-                        </div>
-                        <div>
-                            <label class="label-style text-orange-600 dark:text-orange-400">Alergias</label>
-                            <input id="inputAlergia" type="text" placeholder="Polvo, alimentos, etc." class="input-minimal focus:border-orange-500 dark:focus:border-orange-400">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pt-8 flex flex-col md:flex-row gap-4 border-t border-slate-100 dark:border-slate-800">
-                    <button id="btnRegistrar" type="submit" class="flex-1 bg-indigo-600 text-white font-bold py-4 rounded-2xl hover:bg-indigo-700 shadow-xl shadow-indigo-100 transition-all active:scale-[0.98] dark:shadow-black/20">
-                        Procesar Registro
-                    </button>
-                    <button type="reset" class="px-8 py-4 text-slate-400 font-semibold hover:text-slate-600 transition-colors dark:text-slate-500 dark:hover:text-slate-300">
-                        Limpiar Campos
-                    </button>
-                </div>
+                <button type="submit" class="btn-primario" style="width: 100%; margin-top: 1rem;">Inscribir y Descargar Planilla</button>
             </form>
-        </section>
+        </div>
 
-        <section class="bg-white rounded-[2rem] shadow-sm border border-slate-200 overflow-hidden dark:bg-slate-900 dark:border-slate-800">
-            <div class="p-6 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center dark:border-slate-800 dark:bg-slate-950/20">
-                <h2 class="font-bold text-slate-700 dark:text-slate-200">Listado de Inscritos</h2>
-                <span id="contador" class="text-xs font-bold bg-slate-200 text-slate-600 px-4 py-1.5 rounded-full uppercase tracking-tighter dark:bg-slate-800 dark:text-slate-400">
-                    Cargando alumnos...
-                </span>
-            </div>
-            
-            <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse">
-                    <thead>
-                        <tr class="text-[10px] uppercase tracking-[0.2em] text-slate-400 border-b border-slate-100 dark:border-slate-800 dark:text-slate-500">
-                            <th class="px-8 py-5 font-bold">Alumno e ID</th>
-                            <th class="px-8 py-5 font-bold text-center">Grado</th>
-                            <th class="px-8 py-5 font-bold">Ficha Médica</th>
-                            <th class="px-8 py-5 font-bold text-right">Opciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tablaEstudiantes" class="divide-y divide-slate-50 dark:divide-slate-800">
-                        </tbody>
-                </table>
-            </div>
-            
-            <div id="mensajeVacio" class="p-24 text-center">
-                <div class="text-6xl mb-4 grayscale opacity-20">🗂️</div>
-                <p class="text-slate-400 font-semibold text-sm dark:text-slate-500">No se han detectado alumnos inscritos hoy.</p>
-            </div>
-        </section>
     </main>
 
-    <script src="script.js"></script>
+    <script src="inscripcion.js"></script>
 </body>
 </html>

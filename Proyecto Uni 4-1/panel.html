@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Académico - Panel de Control</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="shortcut icon" href="Logo_cole-removebg-preview.png" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+    <nav class="navbar-estilo">
+        <div class="nav-logo">
+            PORTAL ACADÉMICO
+        </div>
+        <div class="nav-derecha">
+            <a href="index.html" class="nav-link">Inscripciones</a>
+            <a href="login.html" class="nav-link nav-activo">Panel Docentes</a>
+            
+            <button id="themeToggle" class="theme-btn" aria-label="Cambiar tema">
+                <span id="theme-icon">🌙</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="contenedor-principal" style="align-items: flex-start; padding-top: 3rem;">
+
+        <div class="flat-card animate-fade-in" style="max-width: 1000px; width: 100%;">
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem;">
+                <div>
+                    <h2 class="titulo-seccion" style="margin-bottom: 0.2rem;">Panel de Control de Matrícula</h2>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);" id="fechaActual">Cargando fecha...</p>
+                </div>
+                <button id="btnCerrarSesion" class="btn-primario" style="background-color: #e11d48;">Cerrar Sesión</button>
+            </div>
+
+            <div class="grid-stats" style="margin-bottom: 3rem;">
+                <div class="stat-box">
+                    <span class="label-style">2do Maternal</span>
+                    <div id="count-2doMaternal" class="stat-number">0</div>
+                </div>
+                <div class="stat-box">
+                    <span class="label-style">3er Maternal</span>
+                    <div id="count-3erMaternal" class="stat-number">0</div>
+                </div>
+                <div class="stat-box">
+                    <span class="label-style">1er Preescolar</span>
+                    <div id="count-1erPreescolar" class="stat-number">0</div>
+                </div>
+                <div class="stat-box">
+                    <span class="label-style">2do Preescolar</span>
+                    <div id="count-2doPreescolar" class="stat-number">0</div>
+                </div>
+                <div class="stat-box">
+                    <span class="label-style">3er Preescolar</span>
+                    <div id="count-3erPreescolar" class="stat-number">0</div>
+                </div>
+                <div class="stat-box">
+                    <span class="label-style">1er Grado</span>
+                    <div id="count-1erGrado" class="stat-number">0</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem;">
+                <h3 class="titulo-seccion" style="font-size: 1.1rem; margin-bottom: 1rem;">Listado de Alumnos Registrados</h3>
+                
+                <div style="overflow-x: auto; border: 1px solid var(--border-color); border-radius: 12px;">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
+                        <thead>
+                            <tr style="background-color: var(--bg-global); border-bottom: 1px solid var(--border-color);">
+                                <th style="padding: 1rem; font-weight: 700;" class="label-style">Cédula/ID</th>
+                                <th style="padding: 1rem; font-weight: 700;" class="label-style">Nombre Alumno</th>
+                                <th style="padding: 1rem; font-weight: 700;" class="label-style">Grado / Sección</th>
+                                <th style="padding: 1rem; font-weight: 700;" class="label-style">Representante</th>
+                                <th style="padding: 1rem; font-weight: 700; text-align: center;" class="label-style">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaInscritos">
+                            </tbody>
+                    </table>
+                </div>
+                
+                <div id="tablaVaciaMensaje" class="hidden" style="text-align: center; padding: 2rem; color: var(--text-muted); font-style: italic;">
+                    No hay alumnos inscritos en este periodo académico.
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="panel.js"></script>
+</body>
+</html>
